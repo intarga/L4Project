@@ -5,7 +5,6 @@ import h5py
 import astropy.units as u
 import eagleSqlTools as sql
 import matplotlib.pyplot as plt
-from matplotlib import colors
 from astropy import constants as const
 
 
@@ -16,7 +15,7 @@ def read_galaxy_database(query, filename, username, password, data_request=0):
         con = sql.connect(username, password=password)
 
         for sim_name, sim_size in mySims:
-            print sim_name
+            #print sim_name
 
             myData = sql.execute_query(con, query)
 
@@ -197,11 +196,12 @@ def compute_EnclosedMass(gas, dm, stars, bh, GalaxyCentre):
     r_combined = r_combined[mask]
     m_combined = combined['mass'][mask]
     r_combined_vect = r_combined_vect[mask] #check for error
+    print 'r_c_v:', r_combined_vect.shape
 
     # summing
     EnclosedMass = np.cumsum(m_combined)
 
-    return EnclosedMass, r_combined, r_combined_vect
+    return EnclosedMass, r_combined, r_combined_vect, m_combined
 
 def compute_L_c(r, m, G, EnclosedMass, r_combined):
     '''for a given particle in a galaxy, computes its L if it were on a circular
@@ -211,13 +211,55 @@ def compute_L_c(r, m, G, EnclosedMass, r_combined):
 
     return L_c_1
 
-def compute_All_L_c(r, m, G, EnclosedMass, r_combined, N_particles):
+def sr_compute_All_L_c(r, m, G, EnclosedMass, r_combined, N_particles):
     '''runs compute_L_c for all star particles in a galaxy'''
     L_c = np.zeros(N_particles)
     v_c = np.zeros(N_particles)
     for j in xrange(N_particles):
         mod_r = np.linalg.norm(r[j])
         L_c[j] = compute_L_c(mod_r, m[j], G, EnclosedMass, r_combined)
+
+    return L_c
+
+def get_perp_vector(Galaxy_RotationAxis):
+    perp_vector = np.cross(Galaxy_RotationAxis, [0, 0, 1])
+    perp_vector = perp_vector / np.linalg.norm(perp_vector)  # Normalising
+    return perp_vector
+
+def initialise_interpolation(N_radii, N_All_Particles, Galaxy_RotationAxis, EnclosedMass, m_combined, r_combined_vect, r_combined, G, eps=0.0001):
+    perp_vector = get_perp_vector(Galaxy_RotationAxis)
+    Pot_temp = np.zeros(N_All_Particles)
+    InterpRadii = np.logspace(-4, 0, N_radii)
+    InterpPotential = np.zeros(N_radii)
+    InterpEnergyPUM = np.zeros(N_radii)
+    eps = 0.0001
+
+    for j in xrange(N_radii):
+        print 'radcount:', j
+        r_temp = InterpRadii[j] * perp_vector
+        for k in xrange(N_All_Particles):
+            # print 'j:',j,'kfrac:',k/N_All_Particles
+            dist = np.sqrt(np.linalg.norm(r_combined_vect[k] - r_temp) ** 2 + eps ** 2)
+            Pot_temp[k] = -(G * m_combined[k]) / (dist)
+            # print 'Pot_temp',Pot_temp[k],'k:',k
+        InterpPotential[j] = np.sum(Pot_temp)
+        # print InterpPotential[j]
+        InterpEnergyPUM[j] = (0.5 * G * EnclosedMass[np.searchsorted(r_combined, InterpRadii[j]) - 1] /
+                              InterpRadii[j]) + InterpPotential[j]
+        # print InterpEnergyPUM[j]
+
+    return InterpRadii, InterpPotential, InterpEnergyPUM
+
+def interp_compute_All_L_c(N_particles, r, m, v, InterpRadii, InterpPotential, InterpEnergyPUM, EnclosedMass, r_combined, G):
+    L_c = np.zeros(N_particles)
+    for j in xrange(N_particles):
+        mod_r = np.linalg.norm(r[j])
+        Pot_current = np.interp(mod_r, InterpRadii, InterpPotential)
+        E_current = (0.5 * m[j] * (np.linalg.norm(v[j]) ** 2)) + (m[j] * Pot_current)
+        r_new = np.interp(E_current, (InterpEnergyPUM * m[j]), InterpRadii)
+
+        #print 'r_new:', r_new, 'pot', Pot_current, 'E', E_current
+        L_c[j] = compute_L_c(r_new, m[j], G, EnclosedMass, r_combined)
 
     return L_c
 
@@ -251,7 +293,7 @@ def Circularity_Histogram(GNs, SGNs, Centres, OrbitFindingMethod=2, selection=0)
         Lperp = compute_Lperp(L, Galaxy_RotationAxis, N_particles)
 
         # computing M(<R) for all R
-        EnclosedMass, r_combined, r_combined_vect = compute_EnclosedMass(gas, dm, stars, bh, GalaxyCentres[i])
+        EnclosedMass, r_combined, r_combined_vect, m_combined = compute_EnclosedMass(gas, dm, stars, bh, GalaxyCentres[i])
         # plt.scatter(np.log10(r_combined), np.log10(m_combined))
 
         N_All_Particles = len(r_combined)
@@ -259,55 +301,23 @@ def Circularity_Histogram(GNs, SGNs, Centres, OrbitFindingMethod=2, selection=0)
         # Finding L of Circular orbit with the same energy
         # 0 - Brute Force
         # 1 - Assume Same Radius
-        # 2 - Random Sampling
-        # 3 - Interpolation
+        # 2 - Linear interpolation
+        # 3 - Log interpolation
+        # 4 - Hernquist profile
 
         myG = const.G.to(u.Mpc ** 3 * u.Msun ** -1 * u.s ** -2).value
 
         if OrbitFindingMethod == 1:
-            L_c = compute_All_L_c(r, m, myG, EnclosedMass, r_combined, N_particles)
+            L_c = sr_compute_All_L_c(r, m, myG, EnclosedMass, r_combined, N_particles)
 
-        # if OrbitFindingMethod == 2:
-        #     N_radii = 10
-        #     perp_vector = np.cross(Galaxy_RotationAxis, [0, 0, 1])  # Normalise!!!
-        #     Pot_temp = np.zeros(N_All_Particles)
-        #     InterpRadii = np.logspace(-4, 0, N_radii)
-        #     print InterpRadii
-        #     InterpPotential = np.zeros(N_radii)
-        #     InterpEnergyPUM = np.zeros(N_radii)
-        #     Log_InterpRadii = np.log10(InterpRadii)
-        #     print Log_InterpRadii
-        #     eps = 0.001
-        #     for j in xrange(N_radii):
-        #         print j
-        #         r_temp = InterpRadii[j] * perp_vector
-        #         for k in xrange(N_All_Particles):
-        #             # print 'j:',j,'kfrac:',k/N_All_Particles
-        #             dist = np.sqrt(np.linalg.norm(r_combined_vect[k] - r_temp) ** 2 + eps ** 2)
-        #             Pot_temp[k] = -(myG * m_combined[k]) / (dist)
-        #             # print 'Pot_temp',Pot_temp[k],'k:',k
-        #         InterpPotential[j] = np.sum(Pot_temp)
-        #         print InterpPotential[j]
-        #         InterpEnergyPUM[j] = (0.5 * myG * EnclosedMass[np.searchsorted(r_combined, InterpRadii[j]) - 1] /
-        #                               InterpRadii[j]) + InterpPotential[j]
-        #         print InterpEnergyPUM[j]
-        #
-        #     Log_InterpPotential = np.log10(InterpPotential)
-        #     Log_InterpEnergyPUM = np.log10(InterpEnergyPUM)
-        #     print InterpPotential
-        #     print Log_InterpPotential
-        #     for j in xrange(N_particles):
-        #         # print j/N_particles
-        #         mod_r = np.linalg.norm(r[j])
-        #         Pot_current = np.power(10, np.interp(np.log10(mod_r), Log_InterpRadii, Log_InterpPotential))
-        #         # print np.interp(np.log10(mod_r), Log_InterpRadii, Log_InterpPotential)
-        #         # print np.log10(mod_r), Log_InterpRadii, Log_InterpPotential
-        #         E_current = (0.5 * m[j] * (np.linalg.norm(v[j]) ** 2)) + (m[j] * Pot_current)
-        #         r_new = np.power(10, np.interp(np.log10(E_current), (Log_InterpEnergyPUM + np.log10(m[j])),
-        #                                        Log_InterpRadii))
-        #         # print 'r_new:',r_new, 'pot', Pot_current, 'E', E_current
-        #         v_c[j] = np.sqrt(myG * EnclosedMass[np.searchsorted(r_combined, r_new) - 1] / r_new)
-        #         L_c[j] = m[j] * r_new * v_c[j]
+        if OrbitFindingMethod == 2:
+
+            InterpRadii, InterpPotential, InterpEnergyPUM = initialise_interpolation(10, N_All_Particles, Galaxy_RotationAxis, EnclosedMass, m_combined, r_combined_vect, r_combined, myG, eps=0.0001)
+
+            print InterpPotential
+
+            L_c = interp_compute_All_L_c(N_particles, r, m, v, InterpRadii, InterpPotential, InterpEnergyPUM, EnclosedMass, r_combined, myG)
+
 
         # finding circularity
         Circularity = Lperp / L_c
@@ -318,7 +328,7 @@ def Circularity_Histogram(GNs, SGNs, Centres, OrbitFindingMethod=2, selection=0)
         #print 'v', v_c
         #print Log_InterpEnergyPUM
         # print int(N_particles/20)
-        plt.hist(Circularity, bins=int(N_particles / 20), normed=0)  # , range=[-2,2])
+        plt.hist(Circularity, bins=int(N_particles / 20), normed=0, range=[-2,2])
         plt.axvline(x=0, color='red')
         plt.xlim(-2, 2)
         CircularitySorted = np.sort(Circularity)
@@ -367,4 +377,4 @@ if __name__ == '__main__':
 
     GroupNum, SubGroupNum, GalaxyCentres = extract_galaxydata(myData)
 
-    Circularity_Histogram(GroupNum, SubGroupNum, GalaxyCentres, 1)
+    Circularity_Histogram(GroupNum, SubGroupNum, GalaxyCentres, 2)
