@@ -196,7 +196,6 @@ def compute_EnclosedMass(gas, dm, stars, bh, GalaxyCentre):
     r_combined = r_combined[mask]
     m_combined = combined['mass'][mask]
     r_combined_vect = r_combined_vect[mask] #check for error
-    print 'r_c_v:', r_combined_vect.shape
 
     # summing
     EnclosedMass = np.cumsum(m_combined)
@@ -258,7 +257,7 @@ def interp_compute_All_L_c(N_particles, r, m, v, InterpRadii, InterpPotential, I
         E_current = (0.5 * m[j] * (np.linalg.norm(v[j]) ** 2)) + (m[j] * Pot_current)
         r_new = np.interp(E_current, (InterpEnergyPUM * m[j]), InterpRadii)
 
-        #print 'r_new:', r_new, 'pot', Pot_current, 'E', E_current
+        print 'r_new:', r_new, 'Ecurr:', E_current, 'Eint:', InterpEnergyPUM*m[j]
         L_c[j] = compute_L_c(r_new, m[j], G, EnclosedMass, r_combined)
 
     return L_c
@@ -312,7 +311,7 @@ def Circularity_Histogram(GNs, SGNs, Centres, OrbitFindingMethod=2, selection=0)
 
         if OrbitFindingMethod == 2:
 
-            InterpRadii, InterpPotential, InterpEnergyPUM = initialise_interpolation(10, N_All_Particles, Galaxy_RotationAxis, EnclosedMass, m_combined, r_combined_vect, r_combined, myG, eps=0.0001)
+            InterpRadii, InterpPotential, InterpEnergyPUM = initialise_interpolation(10, N_All_Particles, Galaxy_RotationAxis, EnclosedMass, m_combined, r_combined_vect, r_combined, myG, eps=0.00001)
 
             print InterpPotential
 
