@@ -9,11 +9,11 @@ from matplotlib import colors
 from astropy import constants as const
 
 
-def read_galaxy_database(query, filename, data_request=0):
+def read_galaxy_database(query, filename, username, password, data_request=0):
     if data_request == 1:
 
         mySims = np.array([('RefL0012N0188', 12.)])
-        con = sql.connect('aabraham', password='LM277HBz')
+        con = sql.connect(username, password=password)
 
         for sim_name, sim_size in mySims:
             print sim_name
@@ -66,7 +66,7 @@ def read_dataset(itype, att, nfiles=16, snapnum=28):
 
     # Loop over each file and extract the data.
     for i in range(nfiles):
-        f = h5py.File('./data/snap_0%s_z000p000.%i.hdf5'%(snapnum, i), 'r')
+        f = h5py.File('RefL0012N0188/snap_0%s_z000p000.%i.hdf5'%(snapnum, i), 'r')
         tmp = f['PartType%i/%s'%(itype, att)][...]
         data.append(tmp)
 
@@ -95,7 +95,7 @@ def read_dataset(itype, att, nfiles=16, snapnum=28):
 
 def read_dataset_dm_mass():
     """ Special case for the mass of dark matter particles. """
-    f           = h5py.File('./data/snap_028_z000p000.0.hdf5', 'r')
+    f           = h5py.File('RefL0012N0188/snap_028_z000p000.0.hdf5', 'r')
     h           = f['Header'].attrs.get('HubbleParam')
     a           = f['Header'].attrs.get('Time')
     dm_mass     = f['Header'].attrs.get('MassTable')[1]
@@ -117,7 +117,7 @@ def read_dataset_dm_mass():
 
 def read_header():
     """ Read various attributes from the header group. """
-    f       = h5py.File('./data/snap_028_z000p000.0.hdf5', 'r')
+    f       = h5py.File('RefL0012N0188/snap_028_z000p000.0.hdf5', 'r')
     a       = f['Header'].attrs.get('Time')         # Scale factor.
     h       = f['Header'].attrs.get('HubbleParam')  # h.
     boxsize = f['Header'].attrs.get('BoxSize')      # L [Mph/h].
@@ -339,7 +339,7 @@ def Circularity_Histogram(GNs, SGNs, Centres, OrbitFindingMethod=2, selection=0)
 
     return 0
 
-if __name__ == __main__:
+if __name__ == '__main__':
 
     myQuery = 'SELECT \
                         SH.MassType_Star, \
@@ -353,9 +353,15 @@ if __name__ == __main__:
                         RefL0012N0188_SubHalo as SH \
                     WHERE \
                         SH.SnapNum = 28 \
-                        and SH.MassType_star > 1e10 \
-                    '
-    myData = read_galaxy_database(myQuery, 'BulgeDiskSeparator4.pickle')
+                        and SH.MassType_star > 1e10\
+    '
+
+    file = open('LoginDetails.txt')
+    filelines = file.readlines()
+    username = filelines[0]
+    password = filelines[1]
+
+    myData = read_galaxy_database(myQuery, 'BulgeDiskSeparator4.pickle', username, password)
 
 
 
