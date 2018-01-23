@@ -339,7 +339,9 @@ def Circularity_Histogram(GNs, SGNs, Centres, OrbitFindingMethod=2, selection=0)
 
     return 0
 
-myQuery = 'SELECT \
+if __name__ == __main__:
+
+    myQuery = 'SELECT \
                         SH.MassType_Star, \
                         SH.GalaxyID, \
                         SH.GroupNumber, \
@@ -353,10 +355,10 @@ myQuery = 'SELECT \
                         SH.SnapNum = 28 \
                         and SH.MassType_star > 1e10 \
                     '
-##myData = read_galaxy_database(myQuery, 'BulgeDiskSeparator4.pickle')
+    myData = read_galaxy_database(myQuery, 'BulgeDiskSeparator4.pickle')
 
 
 
-#GroupNum, SubGroupNum, GalaxyCentres = extract_galaxydata(myData)
+    GroupNum, SubGroupNum, GalaxyCentres = extract_galaxydata(myData)
 
-#Circularity_Histogram(GroupNum, SubGroupNum, GalaxyCentres, 1)
+    Circularity_Histogram(GroupNum, SubGroupNum, GalaxyCentres, 1)
