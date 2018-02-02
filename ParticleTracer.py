@@ -21,7 +21,7 @@ def read_dataset(itype, att, nfiles=16, snapnum=28):
 
     # Loop over each file and extract the data.
     for i in range(nfiles):
-        f = h5py.File('./data/snap_0%s_z000p%s.%i.hdf5'%(snapnum, p, i), 'r')
+        f = h5py.File('RefL0012N0188/snap_0%s_z000p%s.%i.hdf5'%(snapnum, p, i), 'r')
         tmp = f['PartType%i/%s'%(itype, att)][...]
         data.append(tmp)
 
@@ -50,7 +50,7 @@ def read_dataset(itype, att, nfiles=16, snapnum=28):
 
 def read_header():
     """ Read various attributes from the header group. """
-    f       = h5py.File('./data/snap_028_z000p000.0.hdf5', 'r')
+    f       = h5py.File('RefL0012N0188/snap_028_z000p000.0.hdf5', 'r')
     a       = f['Header'].attrs.get('Time')         # Scale factor.
     h       = f['Header'].attrs.get('HubbleParam')  # h.
     boxsize = f['Header'].attrs.get('BoxSize')      # L [Mph/h].
@@ -163,11 +163,9 @@ yCentre = np.delete(yCentre, delarr)
 zCentre = np.delete(zCentre, delarr)
 GalaxyCentres = np.column_stack((xCentre,yCentre,zCentre))
 
-bd1 = np.empty(0)
-bd2 = np.empty(0)
+
 pid1 = np.empty(0)
 pid2 = np.empty(0)
-bd = np.empty(0)
 r_plot = np.empty(0)
 
 MasterPid = read_dataset(4, 'ParticleIDs', snapnum=27)
@@ -186,21 +184,15 @@ for i in xrange(1):
     #print i/n
     print 'gn,', GroupNum[i]
     r_temp = np.linalg.norm(x['coords'] - GalaxyCentres[i], axis=1)
-    bd_temp = x['bd']
     pid_temp = x['particleID']
     delarr1 = np.where(r_temp < 0.003)
     delarr2 = np.where(r_temp > 0.003)
     r1_temp = np.delete(r_temp, delarr1)
     r2_temp = np.delete(r_temp, delarr2)
-    bd1_temp = np.delete(bd_temp, delarr1)
-    bd2_temp = np.delete(bd_temp, delarr2)
     pid1_temp = np.delete(pid_temp, delarr1)
     pid2_temp = np.delete(pid_temp, delarr2)
-    bd1 = np.concatenate((bd1, bd1_temp))
-    bd2 = np.concatenate((bd2, bd2_temp))
     pid1 = np.concatenate((pid1, pid1_temp))
     pid2 = np.concatenate((pid2, pid2_temp))
-    bd = np.concatenate((bd, bd_temp))
     r_plot = np.concatenate((r_plot, r_temp))
 
     parent_gn_sgn1 = np.zeros((len(pid1),2))
@@ -252,38 +244,20 @@ for i in xrange(1):
     print 'uniques!', uniques, uniques1, uniques2
 
 
-plotchoice = 2
 
-if plotchoice == 0:
-    plt.hist(np.log10(bd1), bins=50, histtype='step', color='blue', normed=0)
-    plt.hist(np.log10(bd2), bins=50, histtype='step', color='red', normed=0)
-    plt.hist(np.log10(bd), bins=50, histtype='step', color='black', normed=0)
-    plt.xlabel('Log10[Birth Gas Density /gcm^-3]')
-    plt.ylabel('Number of Particles')
-    #print 'plotted'
-    plt.savefig('BulgeBDH1.png')
 
-if plotchoice == 1:
-    plt.hist2d(np.log10(r_plot), np.log10(bd), (500,500), norm=colors.LogNorm(), cmap='Greys')
-    plt.colorbar()
-    plt.axvline(x=np.log10(0.003), linewidth=1, color='red')
-    plt.xlabel('Log10[Radius /Mpc')
-    plt.ylabel('Log10[Birth Gas Density /gcm^-3]')
-    # print 'plotted'
-    plt.savefig('BulgeBDH1.png')
 
-if plotchoice == 2:
-    ind = np.arange(N_bars)  # the x locations for the groups
-    width = 0.8  # the width of the bars: can also be len(x) sequence
-    print plotdata1_temp
+ind = np.arange(N_bars)  # the x locations for the groups
+width = 0.8  # the width of the bars: can also be len(x) sequence
+print plotdata1_temp
 
-    p1 = plt.bar(ind, plotdata1, width, color='blue')
-    p2 = plt.bar(ind, plotdata2, width, color='red', bottom=plotdata1)
+p1 = plt.bar(ind, plotdata1, width, color='blue')
+p2 = plt.bar(ind, plotdata2, width, color='red', bottom=plotdata1)
 
-    plt.xlabel('Parent Galaxy /GN.SGN')
-    plt.ylabel('Log10[N]')
-    plt.xticks(ind, uniques, rotation=50, fontsize = 6)
-    #plt.yticks(np.arange(0, 81, 10))
-    plt.legend((p1[0], p2[0]), ('Disk', 'Bulge'))
+plt.xlabel('Parent Galaxy /GN.SGN')
+plt.ylabel('Log10[N]')
+plt.xticks(ind, uniques, rotation=50, fontsize = 6)
+#plt.yticks(np.arange(0, 81, 10))
+plt.legend((p1[0], p2[0]), ('Disk', 'Bulge'))
 
-    plt.savefig('ParticleTracer.png')
+plt.savefig('ParticleTracer.png')

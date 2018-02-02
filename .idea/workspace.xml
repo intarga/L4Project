@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8d888ce7-ea7a-40bc-a6e0-dfc274be3999" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/BulgeDiskSeparator4.pickle" afterPath="$PROJECT_DIR$/BulgeDiskSeparator4.pickle" />
       <change beforePath="$PROJECT_DIR$/BulgeDiskSeparator4.png" afterPath="$PROJECT_DIR$/BulgeDiskSeparator4.png" />
       <change beforePath="$PROJECT_DIR$/BulgeDiskSeparator4.py" afterPath="$PROJECT_DIR$/BulgeDiskSeparator4.py" />
+      <change beforePath="$PROJECT_DIR$/ParticleTracer.png" afterPath="$PROJECT_DIR$/ParticleTracer.png" />
+      <change beforePath="$PROJECT_DIR$/ParticleTracer.py" afterPath="$PROJECT_DIR$/ParticleTracer.py" />
+      <change beforePath="$PROJECT_DIR$/sql_cookies.txt" afterPath="$PROJECT_DIR$/sql_cookies.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +22,7 @@
       <file leaf-file-name="BulgeBDH1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BulgeBDH1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2466">
+            <state relative-caret-position="993">
               <caret line="210" column="53" lean-forward="false" selection-start-line="210" selection-start-column="53" selection-end-line="210" selection-end-column="53" />
               <folding>
                 <element signature="e#239#1361#0" expanded="false" />
@@ -29,24 +33,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BulgeDiskSeparator4.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BulgeDiskSeparator4.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BulgeDiskSeparator4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-665">
-              <caret line="237" column="45" lean-forward="true" selection-start-line="237" selection-start-column="45" selection-end-line="237" selection-end-column="45" />
+            <state relative-caret-position="648">
+              <caret line="78" column="36" lean-forward="true" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="36" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
                 <element signature="e#287#818#0" expanded="false" />
-                <element signature="e#856#1752#0" expanded="false" />
-                <element signature="e#1811#2951#0" expanded="false" />
-                <element signature="e#2985#3836#0" expanded="false" />
-                <element signature="e#3861#4216#0" expanded="false" />
-                <element signature="e#4263#5384#0" expanded="false" />
-                <element signature="e#5427#5670#0" expanded="false" />
-                <element signature="e#5705#5989#0" expanded="false" />
-                <element signature="e#6051#6370#0" expanded="false" />
-                <element signature="e#7434#7669#0" expanded="false" />
-                <element signature="e#7747#8026#0" expanded="false" />
+                <element signature="e#3398#4249#0" expanded="false" />
+                <element signature="e#4274#4629#0" expanded="false" />
+                <element signature="e#6118#6402#0" expanded="false" />
+                <element signature="e#6464#6783#0" expanded="false" />
+                <element signature="e#7847#8082#0" expanded="false" />
+                <element signature="e#8160#8439#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -79,16 +79,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParticleTracer.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ParticleTracer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ParticleTracer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4212">
-              <caret line="242" column="46" lean-forward="false" selection-start-line="242" selection-start-column="46" selection-end-line="242" selection-end-column="46" />
+            <state relative-caret-position="759">
+              <caret line="250" column="65" lean-forward="true" selection-start-line="250" selection-start-column="65" selection-end-line="250" selection-end-column="65" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-                <element signature="e#1535#1883#0" expanded="false" />
+                <element signature="e#251#1517#0" expanded="false" />
+                <element signature="e#1542#1897#0" expanded="false" />
+                <element signature="e#1956#3198#0" expanded="false" />
+                <element signature="e#3245#4285#0" expanded="false" />
+                <element signature="e#4315#4392#0" expanded="false" />
+                <element signature="e#4671#5149#0" expanded="false" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ParticleTracer.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ParticleTracer.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
@@ -121,7 +133,6 @@
         <option value="$PROJECT_DIR$/DatabaseQuery.py" />
         <option value="$PROJECT_DIR$/BirthDensityHistogram.py" />
         <option value="$PROJECT_DIR$/TemperatureDensityGas.py" />
-        <option value="$PROJECT_DIR$/ParticleTracer.py" />
         <option value="$PROJECT_DIR$/BulgeDiskSeparator2.py" />
         <option value="$PROJECT_DIR$/BulgeDiskSeparator3.py" />
         <option value="$PROJECT_DIR$/test.py" />
@@ -129,6 +140,8 @@
         <option value="$PROJECT_DIR$/BulgeBDH1.py" />
         <option value="$PROJECT_DIR$/GalaxyRotator.py" />
         <option value="$PROJECT_DIR$/BulgeDiskSeparator4.py" />
+        <option value="$PROJECT_DIR$/ParticleTracer2.py" />
+        <option value="$PROJECT_DIR$/ParticleTracer.py" />
       </list>
     </option>
   </component>
@@ -170,18 +183,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <expand>
-            <path>
-              <item name="Root" type="cbb8eebc:String" user="Root" />
-              <item name="L4Project" type="cbb8eebc:String" user="L4Project" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -197,6 +198,18 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <expand>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="L4Project" type="cbb8eebc:String" user="L4Project" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -211,116 +224,6 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/LoginDetails.txt</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
-  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -333,7 +236,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.BulgeDiskSeparator4">
+  <component name="RunManager" selected="Python.ParticleTracer">
     <configuration name="BirthDensityHistrogram" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -484,7 +387,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -616,7 +519,14 @@
       <option name="project" value="LOCAL" />
       <updated>1516714184192</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Partial debug of interpolation method">
+      <created>1516716535678</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1516716535678</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -626,8 +536,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19609375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22144847" sideWeight="0.51098096" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819384" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22099853" sideWeight="0.48901904" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22062004" sideWeight="0.48901904" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32966226" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286908" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -639,6 +548,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819384" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -668,17 +578,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/BulgeDiskSeparator4.py</url>
-          <line>264</line>
+          <line>275</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/BulgeDiskSeparator4.py</url>
-          <line>352</line>
+          <line>368</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/BulgeDiskSeparator4.py</url>
-          <line>94</line>
+          <line>105</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
@@ -690,17 +600,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ParticleTracer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3510">
-          <caret line="242" column="46" lean-forward="false" selection-start-line="242" selection-start-column="46" selection-end-line="242" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#1535#1883#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.py" />
     <entry file="file://$PROJECT_DIR$/BulgeDiskSeparator4.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -709,16 +608,12 @@
           <folding>
             <element signature="e#0#31#0" expanded="true" />
             <element signature="e#287#818#0" expanded="false" />
-            <element signature="e#856#1752#0" expanded="false" />
-            <element signature="e#1811#2951#0" expanded="false" />
-            <element signature="e#2985#3836#0" expanded="false" />
-            <element signature="e#3861#4216#0" expanded="false" />
-            <element signature="e#4263#5384#0" expanded="false" />
-            <element signature="e#5427#5670#0" expanded="false" />
-            <element signature="e#5705#5989#0" expanded="false" />
-            <element signature="e#6051#6370#0" expanded="false" />
-            <element signature="e#7434#7669#0" expanded="false" />
-            <element signature="e#7747#8026#0" expanded="false" />
+            <element signature="e#3398#4249#0" expanded="false" />
+            <element signature="e#4274#4629#0" expanded="false" />
+            <element signature="e#6118#6402#0" expanded="false" />
+            <element signature="e#6464#6783#0" expanded="false" />
+            <element signature="e#7847#8082#0" expanded="false" />
+            <element signature="e#8160#8439#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -764,7 +659,12 @@
           <caret line="242" column="46" lean-forward="false" selection-start-line="242" selection-start-column="46" selection-end-line="242" selection-end-column="46" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#1535#1883#0" expanded="false" />
+            <element signature="e#251#1517#0" expanded="false" />
+            <element signature="e#1542#1897#0" expanded="false" />
+            <element signature="e#1956#3198#0" expanded="false" />
+            <element signature="e#3245#4285#0" expanded="false" />
+            <element signature="e#4315#4392#0" expanded="false" />
+            <element signature="e#4671#5149#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -778,16 +678,12 @@
           <folding>
             <element signature="e#0#31#0" expanded="true" />
             <element signature="e#287#818#0" expanded="false" />
-            <element signature="e#856#1752#0" expanded="false" />
-            <element signature="e#1811#2951#0" expanded="false" />
-            <element signature="e#2985#3836#0" expanded="false" />
-            <element signature="e#3861#4216#0" expanded="false" />
-            <element signature="e#4263#5384#0" expanded="false" />
-            <element signature="e#5427#5670#0" expanded="false" />
-            <element signature="e#5705#5989#0" expanded="false" />
-            <element signature="e#6051#6370#0" expanded="false" />
-            <element signature="e#7434#7669#0" expanded="false" />
-            <element signature="e#7747#8026#0" expanded="false" />
+            <element signature="e#3398#4249#0" expanded="false" />
+            <element signature="e#4274#4629#0" expanded="false" />
+            <element signature="e#6118#6402#0" expanded="false" />
+            <element signature="e#6464#6783#0" expanded="false" />
+            <element signature="e#7847#8082#0" expanded="false" />
+            <element signature="e#8160#8439#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -893,11 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ParticleTracer.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BulgeDiskSeparator2.py" />
     <entry file="file://$PROJECT_DIR$/TemperatureDensityGas.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -931,7 +822,7 @@
     <entry file="file://$PROJECT_DIR$/BulgeDiskSeparator3.py" />
     <entry file="file://$PROJECT_DIR$/BulgeBDH1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2466">
+        <state relative-caret-position="993">
           <caret line="210" column="53" lean-forward="false" selection-start-line="210" selection-start-column="53" selection-end-line="210" selection-end-column="53" />
           <folding>
             <element signature="e#239#1361#0" expanded="false" />
@@ -941,14 +832,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ParticleTracer.py">
+    <entry file="file://$PROJECT_DIR$/GalaxyRotator.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ParticleTracer2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4212">
-          <caret line="242" column="46" lean-forward="false" selection-start-line="242" selection-start-column="46" selection-end-line="242" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#1535#1883#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="381">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -963,7 +856,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GalaxyRotator.png">
+    <entry file="file://$PROJECT_DIR$/BulgeDiskSeparator4.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="78" column="36" lean-forward="true" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#287#818#0" expanded="false" />
+            <element signature="e#3398#4249#0" expanded="false" />
+            <element signature="e#4274#4629#0" expanded="false" />
+            <element signature="e#6118#6402#0" expanded="false" />
+            <element signature="e#6464#6783#0" expanded="false" />
+            <element signature="e#7847#8082#0" expanded="false" />
+            <element signature="e#8160#8439#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ParticleTracer.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -973,23 +883,18 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BulgeDiskSeparator4.py">
+    <entry file="file://$PROJECT_DIR$/ParticleTracer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-665">
-          <caret line="237" column="45" lean-forward="true" selection-start-line="237" selection-start-column="45" selection-end-line="237" selection-end-column="45" />
+        <state relative-caret-position="759">
+          <caret line="250" column="65" lean-forward="true" selection-start-line="250" selection-start-column="65" selection-end-line="250" selection-end-column="65" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#287#818#0" expanded="false" />
-            <element signature="e#856#1752#0" expanded="false" />
-            <element signature="e#1811#2951#0" expanded="false" />
-            <element signature="e#2985#3836#0" expanded="false" />
-            <element signature="e#3861#4216#0" expanded="false" />
-            <element signature="e#4263#5384#0" expanded="false" />
-            <element signature="e#5427#5670#0" expanded="false" />
-            <element signature="e#5705#5989#0" expanded="false" />
-            <element signature="e#6051#6370#0" expanded="false" />
-            <element signature="e#7434#7669#0" expanded="false" />
-            <element signature="e#7747#8026#0" expanded="false" />
+            <element signature="e#251#1517#0" expanded="false" />
+            <element signature="e#1542#1897#0" expanded="false" />
+            <element signature="e#1956#3198#0" expanded="false" />
+            <element signature="e#3245#4285#0" expanded="false" />
+            <element signature="e#4315#4392#0" expanded="false" />
+            <element signature="e#4671#5149#0" expanded="false" />
           </folding>
         </state>
       </provider>

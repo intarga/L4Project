@@ -41,6 +41,7 @@ def extract_galaxydata(myData):
     GroupNum = np.zeros(myDataLength)
     SubGroupNum = np.zeros(myDataLength)
     GalaxyCentres = np.zeros((myDataLength, 3))
+    GalaxyVelocities = np.zeros((myDataLength, 3))
     # ImageURLs = np.zeros(myDataLength, dtype='object')
 
     # Extracting Galaxy Data from SQL results
@@ -52,13 +53,23 @@ def extract_galaxydata(myData):
         GalaxyCentres[i][0] = myData[i][4]
         GalaxyCentres[i][1] = myData[i][5]
         GalaxyCentres[i][2] = myData[i][6]
+        GalaxyVelocities[i][0] = myData[i][7] * (u.km/u.s).to(u.Mpc/u.s)
+        GalaxyVelocities[i][1] = myData[i][8] * (u.km/u.s).to(u.Mpc/u.s)
+        GalaxyVelocities[i][2] = myData[i][9] * (u.km/u.s).to(u.Mpc/u.s)
         # linkend = len(myData[i][9]) - 3
         # ImageURLs[i] = myData[i][9][11:linkend]
 
-    return GroupNum, SubGroupNum, GalaxyCentres
+    return GroupNum, SubGroupNum, GalaxyCentres, GalaxyVelocities
 
 def read_dataset(itype, att, nfiles=16, snapnum=28):
     """ Read a selected dataset, itype is the PartType and att is the attribute name. """
+
+    if snapnum == 28:
+        p = '000'
+    elif snapnum == 23:
+        p = '503'
+    elif snapnum == 27:
+        p = '101'
 
     # Output array.
     data = []
@@ -225,7 +236,7 @@ def get_perp_vector(Galaxy_RotationAxis):
     perp_vector = perp_vector / np.linalg.norm(perp_vector)  # Normalising
     return perp_vector
 
-def initialise_interpolation(N_radii, N_All_Particles, Galaxy_RotationAxis, EnclosedMass, m_combined, r_combined_vect, r_combined, G, eps=0.0001):
+def initialise_interpolation(N_radii, N_All_Particles, Galaxy_RotationAxis, GC, EnclosedMass, m_combined, r_combined_vect, r_combined, G, eps=0.0001):
     perp_vector = get_perp_vector(Galaxy_RotationAxis)
     Pot_temp = np.zeros(N_All_Particles)
     InterpRadii = np.logspace(-4, 0, N_radii)
@@ -235,16 +246,16 @@ def initialise_interpolation(N_radii, N_All_Particles, Galaxy_RotationAxis, Encl
 
     for j in xrange(N_radii):
         print 'radcount:', j
-        r_temp = InterpRadii[j] * perp_vector
+        r_temp = (InterpRadii[j] * perp_vector) + GC
         for k in xrange(N_All_Particles):
             # print 'j:',j,'kfrac:',k/N_All_Particles
             dist = np.sqrt(np.linalg.norm(r_combined_vect[k] - r_temp) ** 2 + eps ** 2)
+            #print dist
             Pot_temp[k] = -(G * m_combined[k]) / (dist)
             # print 'Pot_temp',Pot_temp[k],'k:',k
         InterpPotential[j] = np.sum(Pot_temp)
         # print InterpPotential[j]
-        InterpEnergyPUM[j] = (0.5 * G * EnclosedMass[np.searchsorted(r_combined, InterpRadii[j]) - 1] /
-                              InterpRadii[j]) + InterpPotential[j]
+        InterpEnergyPUM[j] = (0.5 * G * EnclosedMass[np.searchsorted(r_combined, InterpRadii[j]) - 1] / InterpRadii[j]) + InterpPotential[j]
         # print InterpEnergyPUM[j]
 
     return InterpRadii, InterpPotential, InterpEnergyPUM
@@ -254,20 +265,21 @@ def interp_compute_All_L_c(N_particles, r, m, v, InterpRadii, InterpPotential, I
     for j in xrange(N_particles):
         mod_r = np.linalg.norm(r[j])
         Pot_current = np.interp(mod_r, InterpRadii, InterpPotential)
-        E_current = (0.5 * m[j] * (np.linalg.norm(v[j]) ** 2)) + (m[j] * Pot_current)
-        r_new = np.interp(E_current, (InterpEnergyPUM * m[j]), InterpRadii)
+        E_current = (0.5 * (np.linalg.norm(v[j]) ** 2)) + Pot_current
+        r_new = np.interp(E_current, InterpEnergyPUM, InterpRadii)
 
-        print 'r_new:', r_new, 'Ecurr:', E_current, 'Eint:', InterpEnergyPUM*m[j]
+        #print 'r_new:', r_new, 'Ecurr:', E_current, 'Eint:', InterpEnergyPUM
         L_c[j] = compute_L_c(r_new, m[j], G, EnclosedMass, r_combined)
 
     return L_c
 
-def Circularity_Histogram(GNs, SGNs, Centres, OrbitFindingMethod=2, selection=0):
+def Circularity_Histogram(GNs, SGNs, Centres, Velocities, OrbitFindingMethod=2, selection=0):
     '''for a set of galaxies specified by group and subgroup numbers, computes
     histograms of the circularities of their particles, plots them for each galaxy,
     and puts the plots together'''
     plt.figure(figsize=(10, 16))
     n = len(GNs)
+    #n=1
     for i in xrange(n):
         # loading galaxy info
         gas = read_galaxy(0, GNs[i], SGNs[i], Centres[i])
@@ -279,7 +291,7 @@ def Circularity_Histogram(GNs, SGNs, Centres, OrbitFindingMethod=2, selection=0)
         # separate data
         r = stars['coords'] - Centres[i]
         bd_temp = stars['bd']
-        v = stars['velocity']
+        v = stars['velocity'] - Velocities[i]
         m = stars['mass']
         #print np.sum(m), StellarMass[i]
         N_particles = len(m)
@@ -311,9 +323,12 @@ def Circularity_Histogram(GNs, SGNs, Centres, OrbitFindingMethod=2, selection=0)
 
         if OrbitFindingMethod == 2:
 
-            InterpRadii, InterpPotential, InterpEnergyPUM = initialise_interpolation(10, N_All_Particles, Galaxy_RotationAxis, EnclosedMass, m_combined, r_combined_vect, r_combined, myG, eps=0.00001)
+            InterpRadii, InterpPotential, InterpEnergyPUM = initialise_interpolation(10, N_All_Particles, Galaxy_RotationAxis, Centres[i], EnclosedMass, m_combined, r_combined_vect, r_combined, myG, eps=0.00001)
 
-            print InterpPotential
+            #plt.figure()
+
+            #plt.plot(InterpRadii, InterpEnergyPUM)
+            #plt.show()
 
             L_c = interp_compute_All_L_c(N_particles, r, m, v, InterpRadii, InterpPotential, InterpEnergyPUM, EnclosedMass, r_combined, myG)
 
@@ -327,7 +342,7 @@ def Circularity_Histogram(GNs, SGNs, Centres, OrbitFindingMethod=2, selection=0)
         #print 'v', v_c
         #print Log_InterpEnergyPUM
         # print int(N_particles/20)
-        plt.hist(Circularity, bins=int(N_particles / 20), normed=0, range=[-2,2])
+        plt.hist(Circularity, bins=int(N_particles / 80), normed=0, range=[-2,2])
         plt.axvline(x=0, color='red')
         plt.xlim(-2, 2)
         CircularitySorted = np.sort(Circularity)
@@ -342,6 +357,7 @@ def Circularity_Histogram(GNs, SGNs, Centres, OrbitFindingMethod=2, selection=0)
         # plt.imshow(im)
         plt.hist(np.log10(bd_temp), bins=100)
         plt.xlim(-26, -20)
+        #plt.plot(InterpRadii, InterpPotential, 'b.')
 
     plt.xlabel('Birth Gas Density /gcm^-3')
     plt.savefig('BulgeDiskSeparator4.png')
@@ -357,7 +373,10 @@ if __name__ == '__main__':
                         SH.SubGroupNumber, \
                         SH.CentreOfPotential_x, \
                         SH.CentreOfPotential_y, \
-                        SH.CentreOfPotential_z \
+                        SH.CentreOfPotential_z, \
+                        SH.Velocity_x, \
+                        SH.Velocity_y, \
+                        SH.Velocity_z \
                     FROM \
                         RefL0012N0188_SubHalo as SH \
                     WHERE \
@@ -367,13 +386,14 @@ if __name__ == '__main__':
 
     file = open('LoginDetails.txt')
     filelines = file.readlines()
-    username = filelines[0]
-    password = filelines[1]
+    username = 'aabraham'
+    password = 'LM277HBz'
+    print username, 'string', password
 
-    myData = read_galaxy_database(myQuery, 'BulgeDiskSeparator4.pickle', username, password)
+    myData = read_galaxy_database(myQuery, 'BulgeDiskSeparator4.pickle', username, password, data_request=0)
 
 
 
-    GroupNum, SubGroupNum, GalaxyCentres = extract_galaxydata(myData)
+    GroupNum, SubGroupNum, GalaxyCentres, GalaxyVelocities = extract_galaxydata(myData)
 
-    Circularity_Histogram(GroupNum, SubGroupNum, GalaxyCentres, 2)
+    Circularity_Histogram(GroupNum, SubGroupNum, GalaxyCentres, GalaxyVelocities, 1)
