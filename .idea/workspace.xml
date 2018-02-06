@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d888ce7-ea7a-40bc-a6e0-dfc274be3999" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/HistMaker.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/BulgeDiskSeparator4.pickle" afterPath="$PROJECT_DIR$/BulgeDiskSeparator4.pickle" />
-      <change beforePath="$PROJECT_DIR$/BulgeDiskSeparator4.png" afterPath="$PROJECT_DIR$/BulgeDiskSeparator4.png" />
       <change beforePath="$PROJECT_DIR$/BulgeDiskSeparator4.py" afterPath="$PROJECT_DIR$/BulgeDiskSeparator4.py" />
-      <change beforePath="$PROJECT_DIR$/ParticleTracer.png" afterPath="$PROJECT_DIR$/ParticleTracer.png" />
-      <change beforePath="$PROJECT_DIR$/ParticleTracer.py" afterPath="$PROJECT_DIR$/ParticleTracer.py" />
-      <change beforePath="$PROJECT_DIR$/sql_cookies.txt" afterPath="$PROJECT_DIR$/sql_cookies.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +18,8 @@
       <file leaf-file-name="BulgeBDH1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BulgeBDH1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="993">
-              <caret line="210" column="53" lean-forward="false" selection-start-line="210" selection-start-column="53" selection-end-line="210" selection-end-column="53" />
+            <state relative-caret-position="741">
+              <caret line="207" column="32" lean-forward="false" selection-start-line="203" selection-start-column="4" selection-end-line="207" selection-end-column="32" />
               <folding>
                 <element signature="e#239#1361#0" expanded="false" />
                 <element signature="e#1386#1734#0" expanded="false" />
@@ -36,18 +32,27 @@
       <file leaf-file-name="BulgeDiskSeparator4.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BulgeDiskSeparator4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="78" column="36" lean-forward="true" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="36" />
+            <state relative-caret-position="903">
+              <caret line="434" column="87" lean-forward="false" selection-start-line="434" selection-start-column="87" selection-end-line="434" selection-end-column="87" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-                <element signature="e#287#818#0" expanded="false" />
-                <element signature="e#3398#4249#0" expanded="false" />
-                <element signature="e#4274#4629#0" expanded="false" />
-                <element signature="e#6118#6402#0" expanded="false" />
-                <element signature="e#6464#6783#0" expanded="false" />
-                <element signature="e#7847#8082#0" expanded="false" />
-                <element signature="e#8160#8439#0" expanded="false" />
+                <element signature="e#3424#4275#0" expanded="false" />
+                <element signature="e#4300#4655#0" expanded="false" />
+                <element signature="e#6215#6499#0" expanded="false" />
+                <element signature="e#6561#6880#0" expanded="false" />
+                <element signature="e#7944#8179#0" expanded="false" />
+                <element signature="e#8257#8536#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HistMaker.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HistMaker.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="70" lean-forward="false" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -79,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParticleTracer.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ParticleTracer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ParticleTracer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="759">
-              <caret line="250" column="65" lean-forward="true" selection-start-line="250" selection-start-column="65" selection-end-line="250" selection-end-column="65" />
+              <caret line="250" column="65" lean-forward="false" selection-start-line="250" selection-start-column="65" selection-end-line="250" selection-end-column="65" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
                 <element signature="e#251#1517#0" expanded="false" />
@@ -120,6 +125,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_CHANGES_POLICY" value="SHELVE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -139,9 +145,10 @@
         <option value="$PROJECT_DIR$/BulgeDiskBEH.py" />
         <option value="$PROJECT_DIR$/BulgeBDH1.py" />
         <option value="$PROJECT_DIR$/GalaxyRotator.py" />
-        <option value="$PROJECT_DIR$/BulgeDiskSeparator4.py" />
         <option value="$PROJECT_DIR$/ParticleTracer2.py" />
         <option value="$PROJECT_DIR$/ParticleTracer.py" />
+        <option value="$PROJECT_DIR$/HistMaker.py" />
+        <option value="$PROJECT_DIR$/BulgeDiskSeparator4.py" />
       </list>
     </option>
   </component>
@@ -214,7 +221,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="last_opened_file_path" value="/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/HistMaker.py" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -236,7 +243,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ParticleTracer">
+  <component name="RunManager" selected="Python.HistMaker">
     <configuration name="BirthDensityHistrogram" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -381,6 +388,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="HistMaker" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ParticleReader" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HistMaker.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="ParticleTracer" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -435,7 +460,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <list size="11">
+    <list size="12">
       <item index="0" class="java.lang.String" itemvalue="Python.BirthDensityHistrogram" />
       <item index="1" class="java.lang.String" itemvalue="Python.TemperatureDensityGas" />
       <item index="2" class="java.lang.String" itemvalue="Python.BulgeBDH1" />
@@ -444,9 +469,10 @@
       <item index="5" class="java.lang.String" itemvalue="Python.BulgeDiskSeparator2" />
       <item index="6" class="java.lang.String" itemvalue="Python.BulgeDiskSeparator3" />
       <item index="7" class="java.lang.String" itemvalue="Python.BulgeDiskSeparator4" />
-      <item index="8" class="java.lang.String" itemvalue="Python.GalaxyRotator" />
-      <item index="9" class="java.lang.String" itemvalue="Python.ParticleTracer" />
-      <item index="10" class="java.lang.String" itemvalue="Python.DatabaseQuery" />
+      <item index="8" class="java.lang.String" itemvalue="Python.HistMaker" />
+      <item index="9" class="java.lang.String" itemvalue="Python.GalaxyRotator" />
+      <item index="10" class="java.lang.String" itemvalue="Python.ParticleTracer" />
+      <item index="11" class="java.lang.String" itemvalue="Python.DatabaseQuery" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -526,7 +552,14 @@
       <option name="project" value="LOCAL" />
       <updated>1516716535678</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="+Bugfix in velcocity calculation &#10;+fix of interpolation method">
+      <created>1517583153860</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1517583153860</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -571,24 +604,20 @@
     <MESSAGE value="Test commit and added if name=main for importing ease" />
     <MESSAGE value="+ Adding LoginDetails.txt and partially generalizing particle data location" />
     <MESSAGE value="Partial debug of interpolation method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Partial debug of interpolation method" />
+    <MESSAGE value="+Bugfix in velcocity calculation &#10;+fix of interpolation method" />
+    <option name="LAST_COMMIT_MESSAGE" value="+Bugfix in velcocity calculation &#10;+fix of interpolation method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/BulgeDiskSeparator4.py</url>
-          <line>275</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/BulgeDiskSeparator4.py</url>
-          <line>368</line>
+          <line>402</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/BulgeDiskSeparator4.py</url>
-          <line>105</line>
+          <line>106</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
@@ -600,20 +629,18 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test.py" />
     <entry file="file://$PROJECT_DIR$/BulgeDiskSeparator4.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1335">
           <caret line="190" column="23" lean-forward="true" selection-start-line="190" selection-start-column="23" selection-end-line="190" selection-end-column="23" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#287#818#0" expanded="false" />
-            <element signature="e#3398#4249#0" expanded="false" />
-            <element signature="e#4274#4629#0" expanded="false" />
-            <element signature="e#6118#6402#0" expanded="false" />
-            <element signature="e#6464#6783#0" expanded="false" />
-            <element signature="e#7847#8082#0" expanded="false" />
-            <element signature="e#8160#8439#0" expanded="false" />
+            <element signature="e#3424#4275#0" expanded="false" />
+            <element signature="e#4300#4655#0" expanded="false" />
+            <element signature="e#6215#6499#0" expanded="false" />
+            <element signature="e#6561#6880#0" expanded="false" />
+            <element signature="e#7944#8179#0" expanded="false" />
+            <element signature="e#8257#8536#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -677,13 +704,12 @@
           <caret line="58" column="47" lean-forward="false" selection-start-line="58" selection-start-column="47" selection-end-line="58" selection-end-column="47" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#287#818#0" expanded="false" />
-            <element signature="e#3398#4249#0" expanded="false" />
-            <element signature="e#4274#4629#0" expanded="false" />
-            <element signature="e#6118#6402#0" expanded="false" />
-            <element signature="e#6464#6783#0" expanded="false" />
-            <element signature="e#7847#8082#0" expanded="false" />
-            <element signature="e#8160#8439#0" expanded="false" />
+            <element signature="e#3424#4275#0" expanded="false" />
+            <element signature="e#4300#4655#0" expanded="false" />
+            <element signature="e#6215#6499#0" expanded="false" />
+            <element signature="e#6561#6880#0" expanded="false" />
+            <element signature="e#7944#8179#0" expanded="false" />
+            <element signature="e#8257#8536#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -820,18 +846,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BulgeDiskSeparator3.py" />
-    <entry file="file://$PROJECT_DIR$/BulgeBDH1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="993">
-          <caret line="210" column="53" lean-forward="false" selection-start-line="210" selection-start-column="53" selection-end-line="210" selection-end-column="53" />
-          <folding>
-            <element signature="e#239#1361#0" expanded="false" />
-            <element signature="e#1386#1734#0" expanded="false" />
-            <element signature="e#1781#2851#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GalaxyRotator.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -856,29 +870,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BulgeDiskSeparator4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="78" column="36" lean-forward="true" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#287#818#0" expanded="false" />
-            <element signature="e#3398#4249#0" expanded="false" />
-            <element signature="e#4274#4629#0" expanded="false" />
-            <element signature="e#6118#6402#0" expanded="false" />
-            <element signature="e#6464#6783#0" expanded="false" />
-            <element signature="e#7847#8082#0" expanded="false" />
-            <element signature="e#8160#8439#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ParticleTracer.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BulgeDiskSeparator4.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -886,7 +878,7 @@
     <entry file="file://$PROJECT_DIR$/ParticleTracer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="759">
-          <caret line="250" column="65" lean-forward="true" selection-start-line="250" selection-start-column="65" selection-end-line="250" selection-end-column="65" />
+          <caret line="250" column="65" lean-forward="false" selection-start-line="250" selection-start-column="65" selection-end-line="250" selection-end-column="65" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
             <element signature="e#251#1517#0" expanded="false" />
@@ -896,6 +888,47 @@
             <element signature="e#4315#4392#0" expanded="false" />
             <element signature="e#4671#5149#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BulgeDiskSeparator4.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BulgeBDH1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="741">
+          <caret line="207" column="32" lean-forward="false" selection-start-line="203" selection-start-column="4" selection-end-line="207" selection-end-column="32" />
+          <folding>
+            <element signature="e#239#1361#0" expanded="false" />
+            <element signature="e#1386#1734#0" expanded="false" />
+            <element signature="e#1781#2851#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BulgeDiskSeparator4.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="903">
+          <caret line="434" column="87" lean-forward="false" selection-start-line="434" selection-start-column="87" selection-end-line="434" selection-end-column="87" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#3424#4275#0" expanded="false" />
+            <element signature="e#4300#4655#0" expanded="false" />
+            <element signature="e#6215#6499#0" expanded="false" />
+            <element signature="e#6561#6880#0" expanded="false" />
+            <element signature="e#7944#8179#0" expanded="false" />
+            <element signature="e#8257#8536#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HistMaker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="70" lean-forward="false" selection-start-line="9" selection-start-column="70" selection-end-line="9" selection-end-column="70" />
+          <folding />
         </state>
       </provider>
     </entry>

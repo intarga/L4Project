@@ -28,6 +28,7 @@ def read_galaxy_database(query, filename, username, password, data_request=0):
     elif data_request == 0:
         pickle_in = open(filename, 'rb')
         myData = pickle.load(pickle_in)
+        pickle_in.close()
 
     return myData
 
@@ -153,6 +154,7 @@ def read_galaxy(itype, gn, sgn, centre):
     if itype == 4:
         data['bd'] = read_dataset(itype, 'BirthDensity')[mask]
         data['velocity'] = read_dataset(itype, 'Velocity')[mask] * (u.cm/u.s).to(u.Mpc/u.s)
+        data['ParticleIDs'] = read_dataset(itype, 'ParticleIDs')[mask]
     data['coords'] = read_dataset(itype, 'Coordinates')[mask] * u.cm.to(u.Mpc)
 
     # Periodic wrap coordinates around centre.
@@ -273,13 +275,13 @@ def interp_compute_All_L_c(N_particles, r, m, v, InterpRadii, InterpPotential, I
 
     return L_c
 
-def Circularity_Histogram(GNs, SGNs, Centres, Velocities, OrbitFindingMethod=2, selection=0):
-    '''for a set of galaxies specified by group and subgroup numbers, computes
-    histograms of the circularities of their particles, plots them for each galaxy,
-    and puts the plots together'''
-    plt.figure(figsize=(10, 16))
+def decompose_galaxy(simsnap, GNs, SGNs, Centres, Velocities, OrbitFindingMethod=2, selection=0):
+    """for a set of galaxies specified by group and subgroup numbers, computes
+    the circularities of their particles, separates them into bulge and disc."""
     n = len(GNs)
     #n=1
+    AllBulgeIDs = []
+    AllDiscIDs = []
     for i in xrange(n):
         # loading galaxy info
         gas = read_galaxy(0, GNs[i], SGNs[i], Centres[i])
@@ -290,7 +292,8 @@ def Circularity_Histogram(GNs, SGNs, Centres, Velocities, OrbitFindingMethod=2, 
 
         # separate data
         r = stars['coords'] - Centres[i]
-        bd_temp = stars['bd']
+        #bd_temp = stars['bd']
+        pID = stars['ParticleIDs']
         v = stars['velocity'] - Velocities[i]
         m = stars['mass']
         #print np.sum(m), StellarMass[i]
@@ -310,11 +313,11 @@ def Circularity_Histogram(GNs, SGNs, Centres, Velocities, OrbitFindingMethod=2, 
         N_All_Particles = len(r_combined)
 
         # Finding L of Circular orbit with the same energy
-        # 0 - Brute Force
+        # 0 - Aperture
         # 1 - Assume Same Radius
         # 2 - Linear interpolation
-        # 3 - Log interpolation
-        # 4 - Hernquist profile
+        # 3 - Log interpolation WIP
+        # 4 - Hernquist profile WIP
 
         myG = const.G.to(u.Mpc ** 3 * u.Msun ** -1 * u.s ** -2).value
 
@@ -332,35 +335,66 @@ def Circularity_Histogram(GNs, SGNs, Centres, Velocities, OrbitFindingMethod=2, 
 
             L_c = interp_compute_All_L_c(N_particles, r, m, v, InterpRadii, InterpPotential, InterpEnergyPUM, EnclosedMass, r_combined, myG)
 
-
-        # finding circularity
         Circularity = Lperp / L_c
-        plt.subplot(n, 2, (2 * i) + 1)
-        print 'Number of Particles:', N_particles
-        print 'circularity:', Circularity
-        print 'l', L_c
-        #print 'v', v_c
-        #print Log_InterpEnergyPUM
-        # print int(N_particles/20)
-        plt.hist(Circularity, bins=int(N_particles / 80), normed=0, range=[-2,2])
-        plt.axvline(x=0, color='red')
-        plt.xlim(-2, 2)
-        CircularitySorted = np.sort(Circularity)
-        print CircularitySorted
 
-        if i == n-1:
-            plt.xlabel('Circularity')
-            plt.ylabel('Number of Particles')
+        BulgeIDs = []
+        DiscIDs = []
 
-        plt.subplot(n, 2, (2 * i) + 2)
-        # im = plt.imread(ImageURLs[i])
-        # plt.imshow(im)
-        plt.hist(np.log10(bd_temp), bins=100)
-        plt.xlim(-26, -20)
-        #plt.plot(InterpRadii, InterpPotential, 'b.')
+        print 'appending'
+        for j in xrange(N_particles):
+            if Circularity[j] < 0:
+                BulgeIDs.append(pID[j])
+            elif Circularity[j] > 0.85:
+                DiscIDs.append(pID[j])
+        print 'done'
 
-    plt.xlabel('Birth Gas Density /gcm^-3')
-    plt.savefig('BulgeDiskSeparator4.png')
+        AllBulgeIDs.append(BulgeIDs)
+        AllDiscIDs.append(DiscIDs)
+
+        pickle_out_bulge = open('galdata/'+simsnap+'-'+str(GNs[i])[:-2]+'-'+str(SGNs[i])[:-2]+'-bulge.pickle', 'wb')
+        pickle.dump(BulgeIDs, pickle_out_bulge)
+        pickle_out_bulge.close()
+
+        pickle_out_disc = open('galdata/'+simsnap + '-' + str(GNs[i])[:-2] + '-' + str(SGNs[i])[:-2] + '-disc.pickle', 'wb')
+        pickle.dump(DiscIDs, pickle_out_disc)
+        pickle_out_disc.close()
+
+    pickle_out_bulge = open('galdata/' + simsnap + '-all-bulge.pickle', 'wb')
+    pickle.dump(BulgeIDs, pickle_out_bulge)
+    pickle_out_bulge.close()
+
+    pickle_out_disc = open('galdata/' + simsnap + 'all-disc.pickle', 'wb')
+    pickle.dump(DiscIDs, pickle_out_disc)
+    pickle_out_disc.close()
+
+    #     # finding circularity
+    #     Circularity = Lperp / L_c
+    #     plt.subplot(n, 2, (2 * i) + 1)
+    #     print 'Number of Particles:', N_particles
+    #     print 'circularity:', Circularity
+    #     print 'l', L_c
+    #     #print 'v', v_c
+    #     #print Log_InterpEnergyPUM
+    #     # print int(N_particles/20)
+    #     plt.hist(Circularity, bins=int(N_particles / 80), normed=0, range=[-2,2])
+    #     plt.axvline(x=0, color='red')
+    #     plt.xlim(-2, 2)
+    #     CircularitySorted = np.sort(Circularity)
+    #     print CircularitySorted
+    #
+    #     if i == n-1:
+    #         plt.xlabel('Circularity')
+    #         plt.ylabel('Number of Particles')
+    #
+    #     plt.subplot(n, 2, (2 * i) + 2)
+    #     # im = plt.imread(ImageURLs[i])
+    #     # plt.imshow(im)
+    #     plt.hist(np.log10(bd_temp), bins=100)
+    #     plt.xlim(-26, -20)
+    #     #plt.plot(InterpRadii, InterpPotential, 'b.')
+    #
+    # plt.xlabel('Birth Gas Density /gcm^-3')
+    # plt.savefig('BulgeDiskSeparator4.png')
 
     return 0
 
@@ -390,10 +424,12 @@ if __name__ == '__main__':
     password = 'LM277HBz'
     print username, 'string', password
 
+    simsnap = 'RefL0012N0188snap28'
+
     myData = read_galaxy_database(myQuery, 'BulgeDiskSeparator4.pickle', username, password, data_request=0)
 
 
 
     GroupNum, SubGroupNum, GalaxyCentres, GalaxyVelocities = extract_galaxydata(myData)
 
-    Circularity_Histogram(GroupNum, SubGroupNum, GalaxyCentres, GalaxyVelocities, 1)
+    decompose_galaxy(simsnap, GroupNum, SubGroupNum, GalaxyCentres, GalaxyVelocities, 2)
