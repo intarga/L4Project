@@ -10,7 +10,20 @@ from pyquaternion import Quaternion
 from mpl_toolkits.mplot3d import Axes3D
 from astropy import constants as const
 import math
-from BulgeDiskSeparator4 import *
+from CircularitiesGenerator import *
+import matplotlib
+
+del matplotlib.font_manager.weight_dict['roman']
+matplotlib.font_manager._rebuild()
+
+plt.rcParams['text.latex.preamble']=[r"\usepackage{times}"]
+#Options
+params = {#'text.usetex' : True,
+          'font.size' : 12,
+          'font.family' : 'Times New Roman',
+          #'text.latex.unicode': True,
+          }
+plt.rcParams.update(params)
 
 def rotation_matrix(axis, theta):
     """
@@ -32,19 +45,19 @@ def GalaxyRotate(GNs, SGNs, Centres, selection=0):
     '''for a set of galaxies specified by group and subgroup numbers, computes
         histograms of the circularities of their particles, plots them for each galaxy,
         and puts the plots together'''
-    plt.figure(figsize=(8, 14))
+    plt.figure(figsize=(4.5, 9))
     n = len(GNs)
     for i in xrange(n):
         # loading galaxy info
-        gas = read_galaxy(0, GNs[i], SGNs[i], Centres[i])
-        dm = read_galaxy(1, GNs[i], SGNs[i], Centres[i])
-        stars = read_galaxy(4, GNs[i], SGNs[i], Centres[i])
-        bh = read_galaxy(5, GNs[i], SGNs[i], Centres[i])
+        gas = read_galaxy(0, GNs[i], SGNs[i], Centres[i], 28)
+        dm = read_galaxy(1, GNs[i], SGNs[i], Centres[i], 28)
+        stars = read_galaxy(4, GNs[i], SGNs[i], Centres[i], 28)
+        bh = read_galaxy(5, GNs[i], SGNs[i], Centres[i], 28)
         print 'Progressii:', i / n
 
         # separate data
         r = stars['coords'] - Centres[i]
-        bd_temp = stars['bd']
+        #bd_temp = stars['bd']
         v = stars['velocity']
         m = stars['mass']
         # print np.sum(m), StellarMass[i]
@@ -85,23 +98,23 @@ def GalaxyRotate(GNs, SGNs, Centres, selection=0):
         plt.ylim(-0.1, 0.1)
         plt.ylabel('GN:'+str(int(GNs[i]))+' '+'SGN:'+str(int(SGNs[i])))#, rotation=80)
         if i+1 == n:
-            plt.xlabel('xy plane /mpc')
+            plt.xlabel('xy plane /Mpc')
 
         plt.subplot(n, 3, (3 * i) + 2, aspect='equal')
         plt.hist2d(y, z, (300, 300), cmap='Greys', norm=colors.LogNorm())
         plt.xlim(-0.1, 0.1)
         plt.ylim(-0.1, 0.1)
         if i + 1 == n:
-            plt.xlabel('yz plane / mpc')
+            plt.xlabel('yz plane / Mpc')
 
         plt.subplot(n, 3, (3 * i) + 3, aspect='equal')
         plt.hist2d(z, x, (300, 300), cmap='Greys', norm=colors.LogNorm())
         plt.xlim(-0.1, 0.1)
         plt.ylim(-0.1, 0.1)
         if i + 1 == n:
-            plt.xlabel('zx plane / mpc')
+            plt.xlabel('zx plane / Mpc')
 
-    #plt.tight_layout()
+    plt.tight_layout()
     plt.savefig('GalaxyRotator.png')
 
     return 0
@@ -122,9 +135,14 @@ myQuery = 'SELECT \
                         SH.SnapNum = 28 \
                         and SH.MassType_star > 1e10 \
                     '
-myData = read_galaxy_database(myQuery, 'BulgeDiskSeparator4.pickle')
 
-GroupNum, SubGroupNum, GalaxyCentres = extract_galaxydata(myData)
+username, password = get_credentials()
+
+simname = "RefL0012N0188"
+
+myData = read_galaxy_database(myQuery, 'BulgeDiskSeparator4.pickle', username, password, simname)
+
+GroupNum, SubGroupNum, GalaxyCentres, GalaxyVelocities = extract_galaxydata(myData, 28)
 
 GalaxyRotate(GroupNum, SubGroupNum, GalaxyCentres)
 
